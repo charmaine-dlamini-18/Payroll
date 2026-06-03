@@ -27,7 +27,7 @@ class EmployeeControllerTest {
         employee = EmployeeFactory.createEmployee("Emp2001",
                 "Richard",
                 "Hendricks",
-                "charmainedlamini@gmail.com",java.time.LocalDate.of(1997, 12, 25), "974567890100");
+                "charmainedlamini@gmail.com",java.time.LocalDate.of(1997, 12, 25));
     }
 
     @Test

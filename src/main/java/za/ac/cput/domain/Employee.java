@@ -1,18 +1,22 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.lang.*;
 import java.time.LocalDate;
 
-
+@Entity
 public class Employee {
+    @Id
     private String employeeNumber;
     private String firstName;
     private String lastName;
     private String email;
     private LocalDate dateOfBirth;
-    private String identityNumber;
 
-    private Employee(){
+
+    protected Employee(){
 
     }
 
@@ -23,17 +27,16 @@ public class Employee {
         this.lastName = builder.lastName;
         this.email = builder.email;
         this.dateOfBirth = builder.dateOfBirth;
-        this.identityNumber = builder.identityNumber;
+
     }
 
     //Constructor with parameters
-    public Employee(String employeeNumber, String firstName, String lastName, String email, LocalDate dateOfBirth, String identityNumber){
+    public Employee(String employeeNumber, String firstName, String lastName, String email, LocalDate dateOfBirth){
         this.employeeNumber = employeeNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.identityNumber = identityNumber;
 
     }
 
@@ -50,9 +53,7 @@ public class Employee {
     public LocalDate getDateOfBirth(){
         return dateOfBirth;
     }
-    public String getIdentityNumber(){
-        return identityNumber;
-    }
+
 
     //to string
     public String toString(){
@@ -61,8 +62,8 @@ public class Employee {
                "\nFirst Name: " + firstName +
                "\nLast Name: " + lastName +
                "\nEmail : " + email +
-               "\nDate of Birth: " + dateOfBirth +
-               "\nIdentity Number : " + identityNumber;
+               "\nDate of Birth: " + dateOfBirth;
+
     }
 
     //Builder class
@@ -73,7 +74,6 @@ public class Employee {
         private String lastName;
         private String email;
         private LocalDate dateOfBirth;
-        private String identityNumber;
 
         //Setters
         public Builder setEmployeeNumber(String employeeNumber) {
@@ -101,10 +101,6 @@ public class Employee {
             return this;
         }
 
-        public Builder setIdentityNumber(String identityNumber) {
-            this.identityNumber = identityNumber;
-            return this;
-        }
 
         public Builder copy(Employee employee){
             this.employeeNumber = employee.employeeNumber;
@@ -112,7 +108,6 @@ public class Employee {
             this.lastName = employee.lastName;
             this.email = employee.email;
             this.dateOfBirth = employee.dateOfBirth;
-            this.identityNumber = employee.identityNumber;
             return this;
         }
 

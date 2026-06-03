@@ -7,8 +7,7 @@ import java.time.LocalDate;
 
 public class EmployeeFactory {
     public static Employee createEmployee(String employeeNumber, String firstName,
-                                          String lastName, String email, LocalDate dateOfBirth,
-                                          String identityNumber){
+                                          String lastName, String email, LocalDate dateOfBirth){
 
         if (Helper.isNullOrEmpty(employeeNumber)|| Helper.isNullOrEmpty(firstName)||
             Helper.isNullOrEmpty(lastName) ){
@@ -27,7 +26,6 @@ public class EmployeeFactory {
                 .setLastName(lastName)
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
-                .setIdentityNumber(identityNumber)
                 .build();
     }
 
