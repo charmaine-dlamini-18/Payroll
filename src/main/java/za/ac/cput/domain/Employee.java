@@ -1,7 +1,7 @@
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 
 import java.lang.*;
 import java.time.LocalDate;
@@ -15,7 +15,9 @@ public class Employee {
     private String email;
     private LocalDate dateOfBirth;
 
-
+    @OneToOne
+    @JoinColumn(name="address_id")
+    private Address address;
     protected Employee(){
 
     }
@@ -27,11 +29,12 @@ public class Employee {
         this.lastName = builder.lastName;
         this.email = builder.email;
         this.dateOfBirth = builder.dateOfBirth;
+        this.address = builder.address;
 
     }
 
     //Constructor with parameters
-    public Employee(String employeeNumber, String firstName, String lastName, String email, LocalDate dateOfBirth){
+    public Employee(String employeeNumber, String firstName, String lastName, String email, LocalDate dateOfBirth, Address address){
         this.employeeNumber = employeeNumber;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,6 +57,9 @@ public class Employee {
         return dateOfBirth;
     }
 
+    public Address getAddress() {
+        return address;
+    }
 
     //to string
     public String toString(){
@@ -62,7 +68,8 @@ public class Employee {
                "\nFirst Name: " + firstName +
                "\nLast Name: " + lastName +
                "\nEmail : " + email +
-               "\nDate of Birth: " + dateOfBirth;
+               "\nDate of Birth: " + dateOfBirth +
+               "\nAddress: " + address;
 
     }
 
@@ -74,6 +81,7 @@ public class Employee {
         private String lastName;
         private String email;
         private LocalDate dateOfBirth;
+        private Address address;
 
         //Setters
         public Builder setEmployeeNumber(String employeeNumber) {
@@ -101,6 +109,11 @@ public class Employee {
             return this;
         }
 
+        public Builder setAddress(Address address) {
+            this.address = address;
+            return this;
+        }
+
 
         public Builder copy(Employee employee){
             this.employeeNumber = employee.employeeNumber;
@@ -108,6 +121,7 @@ public class Employee {
             this.lastName = employee.lastName;
             this.email = employee.email;
             this.dateOfBirth = employee.dateOfBirth;
+            this.address = employee.address;
             return this;
         }
 
